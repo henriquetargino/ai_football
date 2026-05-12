@@ -1,0 +1,16 @@
+# AI Football — Python dependencies.
+# Tested with Python 3.11+ on macOS (M-series, CPU-only).
+
+# Deep learning + custom PPO loop (CleanRL-style, no SB3).
+torch>=2.0
+gymnasium>=1.0
+numpy>=1.24
+
+# Training logs (SummaryWriter for live + event_accumulator for plots).
+tensorboard>=2.15
+
+# Training plots (only needed for scripts/generate_training_plots.py).
+matplotlib>=3.7
+
+# Tests.
+pytest>=7.0

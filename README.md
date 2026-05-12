@@ -2,8 +2,15 @@
 
 > A 1v1 football AI trained for ~1 billion cumulative steps with PPO. Plays live in your browser.
 
-🎮 **[Play the live demo →](https://henriquetargino.github.io/ai_football/)**
-📝 **[Read the full story (Medium)](#)** *(article link coming soon)*
+<p align="center">
+  <a href="https://henriquetargino.github.io/ai_football/">
+    <img alt="Play the live demo" src="https://img.shields.io/badge/%E2%96%B6%EF%B8%8E-Play_the_demo-FF6B1A?style=for-the-badge&labelColor=0a0a14" />
+  </a>
+  &nbsp;
+  <a href="#">
+    <img alt="Read the story on Medium" src="https://img.shields.io/badge/Medium-Read_the_story-2A8AFF?style=for-the-badge&logo=medium&logoColor=white&labelColor=0a0a14" />
+  </a>
+</p>
 
 ---
 
@@ -113,9 +120,9 @@ In-game shortcuts: `R` toggles raycasts, `N` opens the neural network panel, `ES
 
 If you want to retrain or run locally, here's the short version. The full project is set up for a Mac M-series laptop without a GPU.
 
-**Backend** (Python 3.11):
+**Backend** (Python 3.11+):
 ```bash
-pip install stable-baselines3 torch tensorboard numpy matplotlib
+pip install -r requirements.txt
 python -m backend.ai.train --smoke-test 10    # V10.2 config (50M steps, ~6h)
 ```
 
