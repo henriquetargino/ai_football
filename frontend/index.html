@@ -5,9 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Football — Henrique Targino</title>
-    <!-- Favicon SVG inline: bola de futebol com pentágono central + 2
-         marquinhas nos lados (laranja + azul) sugerindo os 2 times. -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><circle cx='32' cy='32' r='29' fill='%23ffffff' stroke='%231a1a1a' stroke-width='3'/><polygon points='32,14 46,24 41,40 23,40 18,24' fill='%231a1a1a'/><path d='M 32 4 L 32 14 L 18 24' stroke='%231a1a1a' stroke-width='2.5' fill='none'/><path d='M 32 4 L 32 14 L 46 24' stroke='%231a1a1a' stroke-width='2.5' fill='none'/><path d='M 4 32 L 18 24 L 23 40' stroke='%231a1a1a' stroke-width='2.5' fill='none'/><path d='M 60 32 L 46 24 L 41 40' stroke='%231a1a1a' stroke-width='2.5' fill='none'/><path d='M 23 40 L 32 60 L 41 40' stroke='%231a1a1a' stroke-width='2.5' fill='none'/><circle cx='9' cy='32' r='3.5' fill='%23ff6b1a'/><circle cx='55' cy='32' r='3.5' fill='%232a8aff'/></svg>">
+    <!-- Favicon (gerado do render real do robô laranja do jogo). -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    <meta name="theme-color" content="#0a0a14">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
@@ -130,6 +134,14 @@
             z-index: 100;
             min-height: 100vh;
             background: var(--bg);
+            display: flex;
+            flex-direction: column;
+        }
+        /* spacer flex: empurra footer-hint + signature pra baixo do fold,
+           garantindo que só banner + 3 cards apareçam no view inicial. */
+        #menu .fold-spacer {
+            flex: 1;
+            min-height: 24px;
         }
 
         /* Banner Three.js — full width no topo, cena estática IDÊNTICA ao jogo */
@@ -195,16 +207,21 @@
             pointer-events: auto;     /* override inherited */
         }
         #banner .byline a {
-            color: var(--orange);
             text-decoration: none;
             font-weight: 600;
-            border-bottom: 1px solid rgba(255, 107, 26, 0.45);
-            transition: color .15s, border-color .15s;
+            /* sublinhado wavy bicolor (laranja → azul no meio) via SVG inline.
+               preserveAspectRatio='none' faz a wave esticar acompanhando o
+               tamanho do texto; o gradiente troca exatamente em 50%. */
+            padding-bottom: 8px;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 6' preserveAspectRatio='none'><defs><linearGradient id='g' x1='0' x2='1' y1='0' y2='0'><stop offset='49.99%25' stop-color='%23ff6b1a'/><stop offset='50%25' stop-color='%232a8aff'/></linearGradient></defs><path d='M0 3 Q 1.5 0.5, 3 3 T 6 3 T 9 3 T 12 3 T 15 3 T 18 3 T 21 3 T 24 3 T 27 3 T 30 3 T 33 3 T 36 3 T 39 3 T 42 3 T 45 3 T 48 3 T 51 3 T 54 3 T 57 3 T 60 3' fill='none' stroke='url(%23g)' stroke-width='2' stroke-linecap='round'/></svg>");
+            background-repeat: no-repeat;
+            background-position: bottom center;
+            background-size: 100% 6px;
+            transition: filter .15s;
         }
-        #banner .byline a:hover {
-            color: #ff8c42;
-            border-bottom-color: var(--orange);
-        }
+        #banner .byline a .name-h { color: var(--orange); }
+        #banner .byline a .name-t { color: var(--blue); }
+        #banner .byline a:hover { filter: brightness(1.15); }
 
         /* ═══════ MATCH CARDS — dark esportivo (combina com o estádio) ═══════ */
         .modes {
@@ -571,11 +588,74 @@
         .signature-link svg { width: 15px; height: 15px; }
         .signature-link:hover { color: var(--blue); }
 
+        /* Scroll hint: chevron suave que pulsa nos primeiros segundos
+           e some quando o usuário rola (ou após ~7s). Sinaliza que tem
+           conteúdo abaixo do fold em viewports curtos. */
+        .scroll-hint {
+            position: fixed;
+            bottom: 18px;
+            left: 50%;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+            /* acima de #menu (z:100) pra não ficar atrás dele */
+            z-index: 110;
+            opacity: 0.75;
+            animation: scroll-hint-life 10s ease forwards;
+        }
+        .scroll-hint .chev {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%; height: 100%;
+            animation: scroll-hint-bounce 1.6s ease-in-out infinite;
+            transform: translateX(-50%);
+        }
+        .scroll-hint svg {
+            width: 32px;
+            height: 32px;
+            fill: rgba(255, 255, 255, 0.65);
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.55));
+        }
+        @keyframes scroll-hint-bounce {
+            0%, 100% { transform: translate(-50%, 0); }
+            50%      { transform: translate(-50%, -8px); }
+        }
+        @keyframes scroll-hint-life {
+            0%, 88% { opacity: 0.75; }
+            100%    { opacity: 0; visibility: hidden; }
+        }
+        .scroll-hint.hidden { display: none !important; }
+
         @media (max-width: 880px) {
             .modes { grid-template-columns: 1fr; max-width: 460px; }
             #banner h1 { font-size: 46px; }
             #banner .subtitle { font-size: 14px; }
             #banner { height: 320px; }
+        }
+
+        /* Responsividade por altura: só encolhe o BANNER (não os cards),
+           porque o objetivo é fazer os 3 cards inteiros caberem no viewport
+           mantendo o footer/signature ESCONDIDO abaixo do fold (a setinha
+           sinaliza que tem mais conteúdo). Cards mantêm tamanho cheio. */
+        @media (max-height: 820px) {
+            #banner { height: 410px; }
+            #banner h1 { font-size: 60px; }
+        }
+        @media (max-height: 720px) {
+            #banner { height: 360px; }
+            #banner h1 { font-size: 54px; }
+            #banner .banner-overlay { padding-top: 22px; }
+        }
+        @media (max-height: 640px) {
+            #banner { height: 300px; }
+            #banner h1 { font-size: 48px; }
+            #banner .banner-overlay { padding-top: 14px; }
+            #banner .subtitle { font-size: 14px; margin-top: 6px; }
+            .modes { margin-top: -48px; }
         }
     </style>
 </head>
@@ -583,6 +663,16 @@
 <body>
     <!-- Canvas do jogo (fundo) -->
     <div id="canvas-container"></div>
+
+    <!-- Scroll hint: aparece nos primeiros segundos sinalizando que tem
+         conteúdo abaixo do fold (botões de github + linkedin no rodapé). -->
+    <div id="scroll-hint" class="scroll-hint" aria-hidden="true">
+        <div class="chev">
+            <svg viewBox="0 0 24 24">
+                <path d="M12 16.5l-7.5-7.5 1.42-1.42L12 13.66l6.08-6.08L19.5 9z"/>
+            </svg>
+        </div>
+    </div>
 
     <!-- (GOAL agora é renderizado no scoreboard 3D, não em overlay HTML) -->
 
@@ -625,7 +715,7 @@
             <div class="banner-overlay">
                 <h1>AI<span class="accent-r">·</span>Football<span class="accent-b">·</span></h1>
                 <p class="subtitle">Watch a neural network learn 1v1 football</p>
-                <p class="byline">by <a href="https://www.linkedin.com/in/henriquetargino/" target="_blank" rel="noopener">Henrique Targino</a></p>
+                <p class="byline">by <a href="https://www.linkedin.com/in/henriquetargino/" target="_blank" rel="noopener"><span class="name-h">Henrique</span> <span class="name-t">Targino</span></a></p>
             </div>
         </div>
 
@@ -708,6 +798,8 @@
             </div>
         </div>
 
+        <div class="fold-spacer" aria-hidden="true"></div>
+
         <p class="footer-hint">
             Trained with PPO + curriculum learning ·
             press <kbd>R</kbd> in-game to toggle ray vision ·
@@ -789,6 +881,29 @@
     <script src="src/replay/controls.js"></script>
 
     <script src="src/main.js"></script>
+
+    <script>
+        // scroll hint: fica visível por ~10s a cada reload/entrada no menu.
+        // some ao entrar em qualquer modo de jogo (menu deixa de ser ativo).
+        (function () {
+            var hint = document.getElementById("scroll-hint");
+            if (!hint) return;
+            var observer = null;
+            function kill() {
+                hint.classList.add("hidden");
+                if (observer) observer.disconnect();
+            }
+            var menu = document.getElementById("menu");
+            if (menu) {
+                observer = new MutationObserver(function () {
+                    if (menu.classList.contains("hidden") || getComputedStyle(menu).display === "none") {
+                        kill();
+                    }
+                });
+                observer.observe(menu, { attributes: true, attributeFilter: ["class", "style"] });
+            }
+        })();
+    </script>
 </body>
 
 </html>

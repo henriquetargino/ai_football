@@ -12,7 +12,7 @@
  * estática: o renderer renderiza a mesma cena sem animar nada.
  */
 
-AISoccer.createBannerScene = function(canvasEl) {
+AISoccer.createBannerScene = function (canvasEl) {
     var FW = AISoccer.FW;
     var FH = AISoccer.FH;
 
@@ -25,7 +25,8 @@ AISoccer.createBannerScene = function(canvasEl) {
     var height = canvasEl.clientHeight || 360;
 
     // câmera levemente mais alta que a do jogo, pra mostrar o estádio inteiro.
-    var camera = new THREE.PerspectiveCamera(38, width / height, 0.1, 100);
+    // FOV menor = mais zoom (vista mais próxima do estádio).
+    var camera = new THREE.PerspectiveCamera(32, width / height, 0.1, 100);
     camera.position.set(FW / 2, 5.5, FH + 6.0);
     camera.lookAt(FW / 2, 0.4, FH / 2);
 
@@ -51,7 +52,7 @@ AISoccer.createBannerScene = function(canvasEl) {
 
     // ─── Cenário do jogo COMPLETO ───
     AISoccer.createField(scene);
-    if (AISoccer.createWalls)       AISoccer.createWalls(scene, 220);
+    if (AISoccer.createWalls) AISoccer.createWalls(scene, 220);
     AISoccer.createGoals(scene, 220);
     // banner usa stands MAIS ALTAS (10 fileiras vs 6 do jogo) pra ficarem
     // visualmente acima das traves. NÃO chamamos createStands aqui — usamos
@@ -126,7 +127,7 @@ AISoccer.createBannerScene = function(canvasEl) {
  * nÃO afeta a visualização do treino (que continua usando createStands
  * com 6 fileiras).
  */
-AISoccer._buildBannerSideStands = function(scene) {
+AISoccer._buildBannerSideStands = function (scene) {
     var FW = AISoccer.FW;
     var FH = AISoccer.FH;
 
@@ -188,10 +189,10 @@ AISoccer._buildBannerSideStands = function(scene) {
     }
 
     // mesmas 4 posições do stands.js (S/N/O/L)
-    createStand(FW, 0,            FW / 2,  FH + offset);
-    createStand(FW, Math.PI,      FW / 2,  -offset);
+    createStand(FW, 0, FW / 2, FH + offset);
+    createStand(FW, Math.PI, FW / 2, -offset);
     createStand(FH, -Math.PI / 2, -offset, FH / 2);
-    createStand(FH,  Math.PI / 2, FW + offset, FH / 2);
+    createStand(FH, Math.PI / 2, FW + offset, FH / 2);
 };
 
 
@@ -208,7 +209,7 @@ AISoccer._buildBannerSideStands = function(scene) {
  * @param {Object} [options]
  * @param {number} [options.numRows=6] número de fileiras (treino=6, banner=10)
  */
-AISoccer._buildCornerStands = function(scene, options) {
+AISoccer._buildCornerStands = function (scene, options) {
     var FW = AISoccer.FW;
     var FH = AISoccer.FH;
     options = options || {};
@@ -231,10 +232,10 @@ AISoccer._buildCornerStands = function(scene, options) {
     //   SW (0, FH):  da stand OESTE até a SUL   → 90°→180°
     // em cada canto, varremos 90° em N segmentos.
     var corners = [
-        { cx: FW, cz: FH, a0:  Math.PI / 2,  a1: 0           },
-        { cx: FW, cz: 0,  a0:  0,            a1: -Math.PI / 2 },
-        { cx: 0,  cz: 0,  a0: -Math.PI / 2, a1: -Math.PI    },
-        { cx: 0,  cz: FH, a0:  Math.PI,     a1:  Math.PI / 2 },
+        { cx: FW, cz: FH, a0: Math.PI / 2, a1: 0 },
+        { cx: FW, cz: 0, a0: 0, a1: -Math.PI / 2 },
+        { cx: 0, cz: 0, a0: -Math.PI / 2, a1: -Math.PI },
+        { cx: 0, cz: FH, a0: Math.PI, a1: Math.PI / 2 },
     ];
 
     // 12 segmentos suaviza a curva e elimina gaps visíveis. Cada degrau
