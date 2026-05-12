@@ -1,0 +1,168 @@
+{
+  "schema_version": 2,
+  "run_name": "20260506-172211_v102_b2beta",
+  "run_label": "v102_b2beta",
+  "total_timesteps": 50000000,
+  "snapshots": [
+    {
+      "step": 0,
+      "label": "F0 \u00b7 Random (untrained)",
+      "phase": "0",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_0_F0_random.json"
+    },
+    {
+      "step": 1251328,
+      "label": "F1A \u00b7 Touch the ball",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_1251328.json",
+      "phase": "1A",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_1251328_F1A.json"
+    },
+    {
+      "step": 3753984,
+      "label": "F1B \u00b7 Walk to the ball",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_3753984.json",
+      "phase": "1B",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_3753984_F1B.json"
+    },
+    {
+      "step": 5005312,
+      "label": "F1C \u00b7 Aim & shoot",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_5005312.json",
+      "phase": "1C",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_5005312_F1C.json"
+    },
+    {
+      "step": 12513280,
+      "label": "F1D \u00b7 Side ball",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_12513280.json",
+      "phase": "1D",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_12513280_F1D.json"
+    },
+    {
+      "step": 17518592,
+      "label": "F2 \u00b7 vs Passive",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_17518592.json",
+      "phase": "2",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_17518592_F2.json"
+    },
+    {
+      "step": 21272576,
+      "label": "F3 \u00b7 vs Scripted",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_21272576.json",
+      "phase": "3",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_21272576_F3.json"
+    },
+    {
+      "step": 25026560,
+      "label": "F3D \u00b7 Defense",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_25026560.json",
+      "phase": "3D",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_25026560_F3D.json"
+    },
+    {
+      "step": 32534528,
+      "label": "F4 \u00b7 Random spawn",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_32534528.json",
+      "phase": "4",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_32534528_F4.json"
+    },
+    {
+      "step": 33785856,
+      "label": "F5 \u00b7 33.8M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_33785856.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_33785856_F5.json"
+    },
+    {
+      "step": 35037184,
+      "label": "F5 \u00b7 35M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_35037184.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_35037184_F5.json"
+    },
+    {
+      "step": 36288512,
+      "label": "F5 \u00b7 36.3M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_36288512.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_36288512_F5.json"
+    },
+    {
+      "step": 37539840,
+      "label": "F5 \u00b7 37.5M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_37539840.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_37539840_F5.json"
+    },
+    {
+      "step": 38791168,
+      "label": "F5 \u00b7 38.8M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_38791168.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_38791168_F5.json"
+    },
+    {
+      "step": 40042496,
+      "label": "F5 \u00b7 40M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_40042496.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_40042496_F5.json"
+    },
+    {
+      "step": 41293824,
+      "label": "F5 \u00b7 41.3M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_41293824.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_41293824_F5.json"
+    },
+    {
+      "step": 42545152,
+      "label": "F5 \u00b7 42.5M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_42545152.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_42545152_F5.json"
+    },
+    {
+      "step": 43796480,
+      "label": "F5 \u00b7 43.8M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_43796480.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_43796480_F5.json"
+    },
+    {
+      "step": 45047808,
+      "label": "F5 \u00b7 45M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_45047808.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_45047808_F5.json"
+    },
+    {
+      "step": 46299136,
+      "label": "F5 \u00b7 46.3M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_46299136.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_46299136_F5.json"
+    },
+    {
+      "step": 47550464,
+      "label": "F5 \u00b7 47.6M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_47550464.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_47550464_F5.json"
+    },
+    {
+      "step": 48801792,
+      "label": "F5 \u00b7 48.8M",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_48801792.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_48801792_F5.json"
+    },
+    {
+      "step": 50001920,
+      "label": "F5 \u00b7 50M (final)",
+      "policy_path": "data/runs/20260506-172211_v102_b2beta/policy_50001920.json",
+      "phase": "5",
+      "replay_path": "data/runs/20260506-172211_v102_b2beta/replay_50001920_F5.json"
+    }
+  ]
+}

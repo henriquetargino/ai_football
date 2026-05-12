@@ -1,0 +1,23 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.pytest_cache/
+
+# treinos crus (TB logs, checkpoints) — pesados demais pro repositório
+data/runs/
+
+# dependências do frontend
+frontend/node_modules/
+
+# runs publicados: ignora tudo exceto o modelo de produção (v10.2)
+frontend/data/runs/*
+!frontend/data/runs/20260506-172211_v102_b2beta/
+
+# editor / config local
+.vscode/
+.claude/*
