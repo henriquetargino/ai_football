@@ -149,4 +149,4 @@ Curriculum stages and hyperparameters are in `backend/ai/train.py`. Physics cons
 
 ## License
 
-[MIT](LICENSE) © 2026 Henrique Targino — fork, learn, build on top. Attribution appreciated.
+[MIT](LICENSE) © 2026 Henrique Targino — fork, learn, build on top. Attribution appreciated. 
